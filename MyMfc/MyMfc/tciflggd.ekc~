@@ -1,0 +1,151 @@
+﻿
+// MyMfcDlg.h: 头文件
+//
+
+#pragma once
+#include "afxwin.h"
+#include<vector>
+
+// CMyMfcDlg 对话框
+class CMyMfcDlg : public CDialogEx
+{
+// 构造
+public:
+	CMyMfcDlg(CWnd* pParent = nullptr);	// 标准构造函数
+
+// 对话框数据
+#ifdef AFX_DESIGN_TIME
+	enum { IDD = IDD_MYMFC_DIALOG };
+#endif
+
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
+
+
+// 实现
+protected:
+	HICON m_hIcon;
+
+	// 生成的消息映射函数
+	virtual BOOL OnInitDialog();
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg void OnPaint();
+	afx_msg HCURSOR OnQueryDragIcon();
+	DECLARE_MESSAGE_MAP()
+
+
+
+
+public:
+
+	afx_msg void On32772();
+	HANDLE Game_Handle;
+	DWORD Pid ;
+
+	
+
+	void  CMyMfcDlg::API_写字节集(__int64  地址, std::vector<byte> 值);
+
+	std::vector<byte> CMyMfcDlg::API_读字节集(__int64 地址, int 长度);
+
+	DWORD Readint(__int64 Address);
+
+	bool Writeint(__int64 Address, int data);
+
+
+	LPVOID CMyMfcDlg::申请内存(int DwSize);
+
+	bool CMyMfcDlg::释放内存(LPVOID 释放地址);
+
+
+	__int64 超级解密(__int64 address);
+
+	void 神话公告(CString 公告内容, int 类型);
+
+	void 内存按键(int key, int Seeps = 0);
+
+
+	void 特效Call(int type);
+
+	void 处理事件();
+
+
+	void 内存汇编x64(std::vector<byte>asm_code);
+
+	int ReadLONG(__int64 内存地址);
+
+	int ReadINT(__int64 内存地址);
+
+
+	void 评分Call(int Value);
+
+	__int64 GetProcessModule(DWORD Pid, char Name[]);
+
+	bool WriteINT(int 内存地址, __int64 Ret);
+
+	afx_msg void OnBnClickedButton1();
+
+
+	bool Writefloat(__int64 Address, float data);
+
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButton3();
+
+	UINT pass = 0;
+	void 符咒全屏();
+	int 当前疲劳();
+
+
+	void 停止符咒();
+	int 解密(__int64 地址);
+	short CMyMfcDlg::Readshort(__int64 Address);
+
+
+	void  Resourceloading(LPCSTR FileName, DWORD ID, LPCSTR type);
+
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CButton pButton;
+	CString code;
+	CString 伤害;
+	CString 伤害1;
+	CString 方式;
+
+
+	void 物品Call(__int64 物品代码);
+
+	void 公告(CString  公告内容, int 公告颜色, int 公告类型);
+
+
+
+	std::vector<byte> data;
+	BOOL CMyMfcDlg::installDvr(CONST CHAR drvPath[50], CONST CHAR serviceName[20]);
+	BOOL CMyMfcDlg::startDvr(CONST CHAR serviceName[20]);
+	BOOL CMyMfcDlg::stopDvr(CONST CHAR serviceName[20]);
+	BOOL CMyMfcDlg::unloadDvr(CONST CHAR serviceName[20]);
+
+	BOOL bRet = FALSE;
+	char * szFileName;
+
+	afx_msg void OnBnClickedButton4();
+
+
+
+
+
+
+
+
+
+
+	void 坐标Call(__int64 触发地址, int x, int y, int z);
+
+
+
+
+
+
+	public:
+		__int64 商店机制, 喇叭公告,  最大疲劳 , 最小疲劳 ,解密机制, 评分CALL , 按键机制 , 人物机制 , 物品CALL;
+		__int64 特效缓冲CALL, 特效释放CALL, BUFF参数1, BUFF参数2, 特效机制, 坐标CALL偏移;
+
+};

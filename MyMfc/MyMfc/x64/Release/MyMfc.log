@@ -1,0 +1,71 @@
+﻿  pch.cpp
+  MyMfc.cpp
+  MyMfcDlg.cpp
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(217,9): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(235,69): warning C4312: “reinterpret_cast”: 从“int”转换到更大的“LPVOID”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(239,5): warning C4312: “类型强制转换”: 从“int”转换到更大的“PVOID”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(239,81): warning C4805: “==”: 在操作中将类型“LONG”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(243,70): warning C4312: “reinterpret_cast”: 从“int”转换到更大的“LPVOID”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(245,69): warning C4312: “reinterpret_cast”: 从“int”转换到更大的“LPVOID”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(588,76): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(613,77): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(640,76): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(666,79): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(686,79): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(715,56): warning C4312: “类型强制转换”: 从“BOOL”转换到更大的“HANDLE”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(727,56): warning C4312: “类型强制转换”: 从“BOOL”转换到更大的“HANDLE”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1070,36): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1102,29): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1110,30): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1111,30): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1237,50): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1245,10): warning C4477: “printf”: 格式字符串“%s”需要类型“char *”的参数，但可变参数 1 拥有了类型“CString”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1268,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“__int64”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1344,50): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1378,50): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1414,50): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1433,68): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1433,45): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1438,139): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1438,68): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1438,45): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1463,50): warning C4244: “=”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1498,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“__int64”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(1673,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“__int64”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2035,22): warning C4244: “参数”: 从“__int64”转换到“UINT”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2143,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2145,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2147,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2153,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2155,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2157,22): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2169,27): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2175,10): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“__int64”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2280,67): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2319,25): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2320,19): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2326,27): warning C4244: “参数”: 从“int”转换到“float”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2427,82): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2528,18): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2701,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2701,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2702,37): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2720,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2720,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2721,26): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2739,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2739,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2756,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2756,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2757,26): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2777,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2777,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2798,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2798,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2817,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(2817,9): warning C4313: “printf”: 格式字符串中的“%p”与“UINT”类型的参数 1 冲突
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(3059,44): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+F:\CPP\MyMfc\MyMfc\MyMfcDlg.cpp(3085,60): warning C4805: “==”: 在操作中将类型“int”与类型“bool”混合不安全
+  
+MyMfc.rc(232): error RC2135: file not found: Mocode.sys
+  

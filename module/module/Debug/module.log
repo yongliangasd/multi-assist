@@ -1,0 +1,9 @@
+﻿  moduleDlg.cpp
+C:\Users\Administrator\source\repos\module\module\模块.h(57,6): error C2664: “int strcmp(const char *,const char *)”: 无法将参数 1 从“WCHAR [260]”转换为“const char *”
+C:\Users\Administrator\source\repos\module\module\模块.h(57,16): message : 与指向的类型无关；强制转换要求 reinterpret_cast、C 样式强制转换或函数样式强制转换
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(100,13): message : 参见“strcmp”的声明
+C:\Users\Administrator\source\repos\module\module\模块.h(96,28): warning C4244: “初始化”: 从“ULONG64”转换到“unsigned int”，可能丢失数据
+C:\Users\Administrator\source\repos\module\module\模块.h(97,22): warning C4244: “参数”: 从“ULONG64”转换到“size_t”，可能丢失数据
+C:\Users\Administrator\source\repos\module\module\模块.h(98,67): warning C4244: “参数”: 从“ULONG64”转换到“SIZE_T”，可能丢失数据
+C:\Users\Administrator\source\repos\module\module\模块.h(100,16): warning C4244: “参数”: 从“ULONG64”转换到“const unsigned int”，可能丢失数据
+C:\Users\Administrator\source\repos\module\module\moduleDlg.cpp(112,52): warning C4305: “参数”: 从“double”到“float”截断

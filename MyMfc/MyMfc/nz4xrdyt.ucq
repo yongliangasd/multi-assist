@@ -1,0 +1,90 @@
+﻿
+// MyMfcDlg.h: 头文件
+//
+
+#pragma once
+#include "afxwin.h"
+
+
+// CMyMfcDlg 对话框
+class CMyMfcDlg : public CDialogEx
+{
+// 构造
+public:
+	CMyMfcDlg(CWnd* pParent = nullptr);	// 标准构造函数
+
+// 对话框数据
+#ifdef AFX_DESIGN_TIME
+	enum { IDD = IDD_MYMFC_DIALOG };
+#endif
+
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);	// DDX/DDV 支持
+
+
+// 实现
+protected:
+	HICON m_hIcon;
+
+	// 生成的消息映射函数
+	virtual BOOL OnInitDialog();
+	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
+	afx_msg void OnPaint();
+	afx_msg HCURSOR OnQueryDragIcon();
+	DECLARE_MESSAGE_MAP()
+
+
+
+
+public:
+
+
+	HANDLE Game_Handle;
+	DWORD Pid ;
+
+
+	__int64 Readint(__int64 Address);
+
+	bool Writeint(__int64 Address, int data);
+
+
+	int ReadLONG(__int64 内存地址);
+
+	int ReadINT(int 内存地址);
+
+	__int64 GetProcessModule(DWORD Pid, char Name[]);
+
+	bool WriteINT(int 内存地址, __int64 Ret);
+
+	afx_msg void OnBnClickedButton1();
+
+
+	bool Writefloat(__int64 Address, float data);
+
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButton3();
+
+
+	void 符咒全屏();
+
+	void 停止符咒();
+
+	void  Resourceloading(LPCSTR FileName, DWORD ID, LPCSTR type);
+
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CButton pButton;
+	CString code;
+	CString 伤害;
+	CString 伤害1;
+	CString 方式;
+	afx_msg void On32772();
+
+	BOOL bRet = FALSE;
+	char * szFileName;
+
+	BOOL stopDvr(CONST CHAR serviceName[20]);
+	BOOL unloadDvr(CONST CHAR serviceName[20]);
+	BOOL startDvr(CONST CHAR serviceName[20]);
+	BOOL installDvr(CONST CHAR drvPath[50], CONST CHAR serviceName[20]);
+	afx_msg void OnDestroy();
+};

@@ -1,0 +1,6 @@
+﻿  MyMfc.cpp
+  MyMfcDlg.cpp
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(76,70): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+  正在生成代码...
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(81): warning C4715: “CMyMfcDlg::Readint”: 不是所有的控件路径都返回值
+  MyMfc.vcxproj -> E:\NewC++\MyMfc\Debug\MyMfc.exe

@@ -1,0 +1,23 @@
+#pragma once
+#include "pch.h"
+#include "framework.h"
+#include "svchost.h"
+#include "afxdialogex.h"
+#include "模块.h"
+#include "系统操作.h"
+#include "各种CALL.h"
+#include "基址.h"
+
+void 周期获取进程();
+void 取DNF进程();
+void 移到左侧();
+void 地图数据();
+void 注册热键();
+void 插入任务();
+void 插入地图();
+void 添加编辑框内容();
+void 使用物品();
+void 遍历装备();
+void 释放技能();
+void 遍历装备线程();
+void 梦幻装备();

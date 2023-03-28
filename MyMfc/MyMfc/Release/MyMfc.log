@@ -1,0 +1,32 @@
+﻿  pch.cpp
+  MyMfc.cpp
+  MyMfcDlg.cpp
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(177,9): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(199,77): warning C4805: “==”: 在操作中将类型“LONG”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(223,80): warning C4805: “==”: 在操作中将类型“ULONG”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(226,10): warning C4244: “return”: 从“__int64”转换到“int”，可能丢失数据
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(244,9): warning C4477: “printf”: 格式字符串“%d”需要类型“int”的参数，但可变参数 1 拥有了类型“HANDLE”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(249,81): warning C4805: “==”: 在操作中将类型“ULONG”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(273,81): warning C4805: “==”: 在操作中将类型“ULONG”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(620,70): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(616,8): warning C4101: “保护属性”: 未引用的局部变量
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(641,72): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(639,8): warning C4101: “保护属性”: 未引用的局部变量
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(659,72): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(657,8): warning C4101: “保护属性”: 未引用的局部变量
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(976,14): warning C4805: “==”: 在操作中将类型“BOOL”与类型“bool”混合不安全
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1136,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1137,40): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1155,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1156,26): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1174,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1191,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1192,26): warning C4244: “参数”: 从“__int64”转换到“int”，可能丢失数据
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1212,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1233,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+E:\NewC++\MyMfc\MyMfc\MyMfcDlg.cpp(1252,9): warning C4477: “printf”: 格式字符串“%p”需要类型“void *”的参数，但可变参数 1 拥有了类型“UINT”
+  正在生成代码
+  Previous IPDB not found, fall back to full compilation.
+  All 268 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  MyMfc.vcxproj -> E:\NewC++\MyMfc\Release\MyMfc.exe

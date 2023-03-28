@@ -1,0 +1,645 @@
+﻿
+// MyMfcDlg.cpp: 实现文件
+//
+
+#include "pch.h"
+#include "framework.h"
+#include "MyMfc.h"
+#include "MyMfcDlg.h"
+#include "afxdialogex.h"
+
+#ifdef _DEBUG
+#define new DEBUG_NEW
+#endif
+
+
+// 用于应用程序“关于”菜单项的 CAboutDlg 对话框
+
+class CAboutDlg : public CDialogEx
+{
+public:
+	CAboutDlg();
+
+// 对话框数据
+#ifdef AFX_DESIGN_TIME
+	enum { IDD = IDD_ABOUTBOX };
+#endif
+
+	protected:
+	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+
+// 实现
+protected:
+	DECLARE_MESSAGE_MAP()
+};
+
+CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
+{
+}
+
+void CAboutDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialogEx::DoDataExchange(pDX);
+}
+
+BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+END_MESSAGE_MAP()
+
+
+// CMyMfcDlg 对话框
+
+
+
+CMyMfcDlg::CMyMfcDlg(CWnd* pParent /*=nullptr*/)
+	: CDialogEx(IDD_MYMFC_DIALOG, pParent)
+	, code(19028)
+	, 伤害(500)
+	, 伤害1(99999999)
+	, 方式(31)
+{
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+}
+
+void CMyMfcDlg::DoDataExchange(CDataExchange* pDX)
+{
+	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT1, code);
+	DDX_Text(pDX, IDC_EDIT3, 伤害);
+	DDX_Text(pDX, IDC_EDIT2, 伤害1);
+	DDX_Text(pDX, IDC_EDIT4, 方式);
+	DDX_Control(pDX, IDC_BUTTON2, pButton);
+}
+
+BEGIN_MESSAGE_MAP(CMyMfcDlg, CDialogEx)
+	ON_WM_SYSCOMMAND()
+	ON_WM_PAINT()
+	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CMyMfcDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CMyMfcDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &CMyMfcDlg::OnBnClickedButton3)
+	ON_WM_TIMER()
+END_MESSAGE_MAP()
+
+
+// CMyMfcDlg 消息处理程序
+typedef enum _THREADINFOCLASS
+{
+	ThreadBasicInformation,
+	ThreadTimes,
+	ThreadPriority,
+	ThreadBasePriority,
+	ThreadAffinityMask,
+	ThreadImpersonationToken,
+	ThreadDescriptorTableEntry,
+	ThreadEnableAlignmentFaultFixup,
+	ThreadEventPair_Reusable,
+	ThreadQuerySetWin32StartAddress,
+	ThreadZeroTlsCell,
+	ThreadPerformanceCount,
+	ThreadAmILastThread,
+	ThreadIdealProcessor,
+	ThreadPriorityBoost,
+	ThreadSetTlsArrayAddress,
+	ThreadIsIoPending,
+	ThreadHideFromDebugger,
+	ThreadBreakOnTermination,
+	MaxThreadInfoClass
+}THREADINFOCLASS;
+typedef struct _CLIENT_ID
+{
+	HANDLE UniqueProcess;
+	HANDLE UniqueThread;
+}CLIENT_ID;
+typedef struct _THREAD_BASIC_INFORMATION
+{
+	LONG ExitStatus;
+	PVOID TebBaseAddress;
+	CLIENT_ID ClientId;
+	LONG AffinityMask;
+	LONG Priority;
+	LONG BasePriority;
+}THREAD_BASIC_INFORMATION, * PTHREAD_BASIC_INFORMATION;
+
+
+extern "C" LONG(__stdcall * ZwQueryInformationThread)(
+	IN HANDLE ThreadHandle,
+	IN THREADINFOCLASS ThreadInformationClass,
+	OUT PVOID ThreadInformation,
+	IN ULONG ThreadInformationLength,
+	OUT PULONG ReturnLength OPTIONAL
+	) = NULL;
+LONG(__stdcall* _NtReadVirtualMemory)(
+	IN HANDLE ProcessHandle,
+	IN PVOID BaseAddress,
+	OUT PVOID Buffer,
+	IN SIZE_T NumberOfBytesToRead,
+	OUT PSIZE_T NumberOfBytesRead
+	);
+
+
+LONG(__stdcall* _NtWriteVirtualMemory)(
+	IN HANDLE ProcessHandle,
+	IN PVOID BaseAddress,
+	OUT PVOID Buffer,
+	IN SIZE_T NumberOfBytesToRead,
+	OUT PSIZE_T NumberOfBytesRead
+	);
+
+
+int CMyMfcDlg::ReadLONG(__int64 内存地址)
+{
+	__int64 Ret = 0;  DWORD 保护属性;
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 8, PAGE_EXECUTE_READWRITE, &保护属性);
+
+	(FARPROC&)_NtReadVirtualMemory = ::GetProcAddress(GetModuleHandle("ntdll.dll"), "NtReadVirtualMemory");
+
+	_NtReadVirtualMemory(Game_Handle, (PVOID)内存地址, &Ret, 8, 0);
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 8, 保护属性, &保护属性);
+	return Ret;
+}
+
+int CMyMfcDlg::ReadINT(int 内存地址)
+{
+	int Ret = 0;  DWORD 保护属性;
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 4, PAGE_EXECUTE_READWRITE, &保护属性);
+	(FARPROC&)_NtReadVirtualMemory = ::GetProcAddress(GetModuleHandle("ntdll.dll"), "NtReadVirtualMemory");
+
+	printf("地址：%p\n", _NtReadVirtualMemory);
+	_NtReadVirtualMemory(Game_Handle, (PVOID)内存地址, &Ret, 4, 0);
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 4, 保护属性, &保护属性);
+	return Ret;
+}
+
+bool CMyMfcDlg::WriteINT(int 内存地址, __int64 Ret)
+{
+	  DWORD 保护属性;
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 4, PAGE_EXECUTE_READWRITE, &保护属性);
+	(FARPROC&)_NtWriteVirtualMemory = ::GetProcAddress(GetModuleHandle("ntdll.dll"), "NtWriteVirtualMemory");
+
+	printf("地址：%p\n", _NtWriteVirtualMemory);
+	if (_NtWriteVirtualMemory(Game_Handle, (PVOID)内存地址, &Ret, 4, 0) == true)
+	{
+
+		return true;
+		VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 4, 保护属性, &保护属性);
+	}
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(内存地址), 4, 保护属性, &保护属性);
+	return false;
+}
+
+
+__int64 CMyMfcDlg::Readint(__int64 Address)
+{
+
+
+	__int64 Ret = 0 ;
+	if (::ReadProcessMemory(Game_Handle, (void*)Address, &Ret, 8, 0) == true)
+		return Ret;
+	else
+		AfxMessageBox("读取Game内存失败");
+
+}
+
+
+bool CMyMfcDlg::Writeint(__int64 Address, int data)
+{
+	DWORD 保护属性;
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(Address), 4, PAGE_EXECUTE_READWRITE, &保护属性);
+	if (::WriteProcessMemory(Game_Handle, (void*)Address, &data,4, 0) == true)
+		return true;
+	else
+		AfxMessageBox("写入Game内存失败");
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(Address), 4, 保护属性, &保护属性);
+}
+bool CMyMfcDlg::Writefloat(__int64 Address, float data)
+{
+	DWORD 保护属性;
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(Address), 4, PAGE_EXECUTE_READWRITE, &保护属性);
+	if (::WriteProcessMemory(Game_Handle, (void*)Address, &data, 4, 0) == true)
+		return true;
+	else
+		AfxMessageBox("写入Game内存失败");
+	VirtualProtectEx(Game_Handle, reinterpret_cast<LPVOID>(Address), 4, 保护属性, &保护属性);
+}
+
+__int64 CMyMfcDlg::GetProcessModule(DWORD Pid, char Name[])
+{
+
+	MODULEENTRY32 module = { 0 };
+
+	__int64 temp = 0;
+
+	HANDLE hModuleSnap = ::CreateToolhelp32Snapshot(TH32CS_SNAPMODULE, Pid);
+	HANDLE modules = 0;
+	if (hModuleSnap != 0)
+	{
+		module.dwSize = sizeof(MODULEENTRY32);
+
+		modules = (HANDLE)Module32First(hModuleSnap, &module);
+
+		while (modules != 0)
+		{
+			if (_strcmpi(module.szModule, Name) == 0)
+			{
+				CloseHandle(hModuleSnap);
+
+				temp = (__int64)module.modBaseAddr;
+				return temp;
+			}
+
+			modules = (HANDLE)Module32Next(hModuleSnap, &module);
+		}
+		CloseHandle(hModuleSnap);
+	}
+
+	return -1;
+}
+
+
+
+
+BOOL CMyMfcDlg::OnInitDialog()
+{
+	CDialogEx::OnInitDialog();
+
+	// 将“关于...”菜单项添加到系统菜单中。
+
+	// IDM_ABOUTBOX 必须在系统命令范围内。
+	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
+	ASSERT(IDM_ABOUTBOX < 0xF000);
+
+	CMenu* pSysMenu = GetSystemMenu(FALSE);
+	if (pSysMenu != nullptr)
+	{
+		BOOL bNameValid;
+		CString strAboutMenu;
+		bNameValid = strAboutMenu.LoadString(IDS_ABOUTBOX);
+		ASSERT(bNameValid);
+		if (!strAboutMenu.IsEmpty())
+		{
+			pSysMenu->AppendMenu(MF_SEPARATOR);
+			pSysMenu->AppendMenu(MF_STRING, IDM_ABOUTBOX, strAboutMenu);
+		}
+	}
+
+	// 设置此对话框的图标。  当应用程序主窗口不是对话框时，框架将自动
+	//  执行此操作
+	SetIcon(m_hIcon, TRUE);			// 设置大图标
+	SetIcon(m_hIcon, FALSE);		// 设置小图标
+
+	// TODO: 在此添加额外的初始化代码
+
+	
+	CWnd* Game_Wnd = FindWindow(NULL, "地下城与勇士");
+
+
+	if (!Game_Wnd)
+	{
+		AfxMessageBox("游戏未运行，程序初始化失败");
+
+		this->OnOK();
+	}
+
+	 ::GetWindowThreadProcessId(Game_Wnd->m_hWnd, &Pid);
+
+	 CString Text;
+	 Text.Format("GamePid：%d", Pid);
+
+	 this->SetWindowTextA(Text);
+	 Game_Handle = OpenProcess(PROCESS_ALL_ACCESS, FALSE, Pid);
+
+
+	 if (!Game_Handle)
+	 {
+		 AfxMessageBox("打开游戏进程失败,请管理员身份运行我！！！");
+		 this->OnOK();
+	 }
+		 
+
+
+
+	/* AllocConsole();
+
+	 FILE* Ftp = freopen("CONOUT$", "w", stdout);
+
+*/
+
+
+
+	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
+}
+
+void CMyMfcDlg::OnSysCommand(UINT nID, LPARAM lParam)
+{
+	if ((nID & 0xFFF0) == IDM_ABOUTBOX)
+	{
+		CAboutDlg dlgAbout;
+		dlgAbout.DoModal();
+	}
+	else
+	{
+		CDialogEx::OnSysCommand(nID, lParam);
+	}
+}
+
+// 如果向对话框添加最小化按钮，则需要下面的代码
+//  来绘制该图标。  对于使用文档/视图模型的 MFC 应用程序，
+//  这将由框架自动完成。
+
+void CMyMfcDlg::OnPaint()
+{
+	if (IsIconic())
+	{
+		CPaintDC dc(this); // 用于绘制的设备上下文
+
+		SendMessage(WM_ICONERASEBKGND, reinterpret_cast<WPARAM>(dc.GetSafeHdc()), 0);
+
+		// 使图标在工作区矩形中居中
+		int cxIcon = GetSystemMetrics(SM_CXICON);
+		int cyIcon = GetSystemMetrics(SM_CYICON);
+		CRect rect;
+		GetClientRect(&rect);
+		int x = (rect.Width() - cxIcon + 1) / 2;
+		int y = (rect.Height() - cyIcon + 1) / 2;
+
+		// 绘制图标
+		dc.DrawIcon(x, y, m_hIcon);
+	}
+	else
+	{
+		CDialogEx::OnPaint();
+	}
+}
+
+//当用户拖动最小化窗口时系统调用此函数取得光标
+//显示。
+HCURSOR CMyMfcDlg::OnQueryDragIcon()
+{
+	return static_cast<HCURSOR>(m_hIcon);
+}
+
+
+void CMyMfcDlg::OnBnClickedButton1()
+{
+
+  //卡邮件
+
+	UINT 人物指针 = ReadLONG(0X14B714B30);
+	人物指针 += 0x9EB0;
+	人物指针  = ReadLONG(人物指针);
+	人物指针 += 0x80;
+	人物指针 = ReadLONG(人物指针);
+	人物指针 += 0x30;
+	人物指针 = ReadLONG(人物指针);
+	人物指针 += 0x30;
+	Writeint(人物指针, 100090444);
+	
+	MessageBox("符咒初始化成功", "凉城", MB_OK | MB_ICONINFORMATION);
+
+
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+void CMyMfcDlg::停止符咒()
+{
+	UINT 部位 = ReadLONG(0X14B714B30);
+	部位 += 0x9EB0;
+	部位 = ReadLONG(部位);
+	部位 += 0x80;
+	部位 = ReadLONG(部位);
+	部位 += 0x30;
+	部位 = ReadLONG(部位);
+	部位 += 0xBD8;
+	Writeint(部位, 16);
+}
+
+void CMyMfcDlg::符咒全屏()
+{
+	UpdateData(true);
+
+	UINT 部位 = ReadLONG(0X14B714B30);
+	部位 += 0x9EB0;
+	部位 = ReadLONG(部位);
+	部位 += 0x80;
+	部位 = ReadLONG(部位);
+	部位 += 0x30;
+	部位 = ReadLONG(部位);
+	部位 += 0xBD8;
+	Writeint(部位, 31);
+
+
+	//符咒伤害
+	UINT 伤害2 = ReadLONG(0X14B714B30);
+	伤害2 += 0x9EB0;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x80;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x30;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x1248;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0xB0;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x8;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x58;
+	伤害2 = ReadLONG(伤害2);
+	伤害2 += 0x1c;
+	printf("伤害：%p\n", 伤害2);
+	Writefloat(伤害2, (double)伤害1);
+
+
+	//符咒频率
+	UINT 频率 = ReadLONG(0X14B714B30);
+	频率 += 0x9EB0;
+	频率 = ReadLONG(频率);
+	频率 += 0x80;
+	频率 = ReadLONG(频率);
+	频率 += 0x30;
+	频率 = ReadLONG(频率);
+	频率 += 0x1248;
+	频率 = ReadLONG(频率);
+	频率 += 0x88;
+	频率 = ReadLONG(频率);
+	频率 += 0x30;
+	频率 = ReadLONG(频率);
+	频率 += 0x4;
+	printf("频率：%p\n", 频率);
+	Writeint(频率, 伤害);
+
+	UINT 几率 = ReadLONG(0X14B714B30);
+	几率 += 0x9EB0;
+	几率 = ReadLONG(几率);
+	几率 += 0x80;
+	几率 = ReadLONG(几率);
+	几率 += 0x30;
+	几率 = ReadLONG(几率);
+	几率 += 0x1248;
+	几率 = ReadLONG(几率);
+	几率 += 0xB0;
+	几率 = ReadLONG(几率);
+	几率 += 0x8;
+	几率 = ReadLONG(几率);
+	几率 += 0x30;
+	几率 = ReadLONG(几率);
+	几率 += 0x4;
+	printf("几率:%p\n", 几率);
+	Writefloat(几率, (double)100);
+
+
+	UINT 触发 = ReadLONG(0X14B714B30);
+	触发 += 0x9EB0;
+	触发 = ReadLONG(触发);
+	触发 += 0x80;
+	触发 = ReadLONG(触发);
+	触发 += 0x30;
+	触发 = ReadLONG(触发);
+	触发 += 0x1248;
+	触发 = ReadLONG(触发);
+	触发 += 0x88;
+	触发 = ReadLONG(触发);
+	触发 += 0x8;
+	触发 = ReadLONG(触发);
+	printf("触发：%p\n", 触发);
+	Writeint(触发, 方式);
+
+
+	UINT 代码 = ReadLONG(0X14B714B30);
+	代码 += 0x9EB0;
+	代码 = ReadLONG(代码);
+	代码 += 0x80;
+	代码 = ReadLONG(代码);
+	代码 += 0x30;
+	代码 = ReadLONG(代码);
+	代码 += 0x1248;
+	代码 = ReadLONG(代码);
+	代码 += 0xb0;
+	代码 = ReadLONG(代码);
+	代码 += 0x8;
+	代码 = ReadLONG(代码);
+	代码 += 0x58;
+	代码 = ReadLONG(代码);
+	代码 += 0x0c;
+
+	printf("代码：%p\n", 代码);
+	Writefloat(代码, (float)code);
+
+
+	UINT 全屏 = ReadLONG(0x14B714B30);
+
+	全屏 += 0x9EB0;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x80;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x30;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x1248;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0xb0;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x8;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x8;
+	全屏 = ReadLONG(全屏);
+	全屏 += 0x4;
+	printf("全屏：%p\n", 全屏);
+	Writefloat(全屏, (float)4);
+
+	UINT star = ReadLONG(0X14B714B30);
+	star += 0x9EB0;
+	star = ReadLONG(star);
+	star += 0x80;
+	star = ReadLONG(star);
+	star += 0x30;
+	star = ReadLONG(star);
+	star += 0x1248;
+	star = ReadLONG(star);
+	star += 0xb0;
+	star = ReadLONG(star);
+	star += 0x8;
+	star = ReadLONG(star);
+	star += 0x58;
+	star = ReadLONG(star);
+	star += 0x8;
+	printf("star：%p\n", star);
+	Writefloat(star, (float)-1);
+
+}
+
+void CMyMfcDlg::OnBnClickedButton2()
+{
+	CString flg;
+	pButton.GetWindowTextA(flg);
+	if (flg == "激活符咒")
+	{
+		pButton.SetWindowTextA("停止符咒");
+		SetTimer(1, 50, NULL);
+		
+	}
+
+	if (flg == "停止符咒")
+	{
+		pButton.SetWindowTextA("激活符咒");
+		停止符咒();
+		KillTimer(1);
+
+	}
+
+
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void CMyMfcDlg::OnBnClickedButton3()
+{
+
+	UINT 被减 = 0;
+
+	UINT 减少 = ReadLONG(0X14B714B30);
+	减少 += 0x9EB0;
+	减少 = ReadLONG(减少);
+	减少 += 0x80;
+	减少 = ReadLONG(减少);
+	减少 += 0x30;
+	减少 = ReadLONG(减少);
+	减少 += 0x10;
+	被减 = 减少;
+	减少 = ReadLONG(被减);
+
+	减少 -= 100000;
+	Writeint(被减, 减少);
+
+
+
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+
+
+void CMyMfcDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO:  在此添加消息处理程序代码和/或调用默认值
+
+
+
+
+	switch (nIDEvent)
+	{
+
+	case 1:
+	{
+			  符咒全屏();
+
+			  break;
+
+	}
+
+
+	}
+
+
+
+
+	CDialogEx::OnTimer(nIDEvent);
+}
